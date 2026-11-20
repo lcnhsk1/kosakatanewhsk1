@@ -1,0 +1,1768 @@
+<!DOCTYPE html>
+<html lang="id" translate="no" class="notranslate">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- Mematikan fungsi auto-translate dari Google Translate & mesin penerjemah browser -->
+    <meta name="google" content="notranslate">
+    <meta name="robots" content="notranslate">
+    <title>HSK 1 Kosakata Interaktif - lcnpalembang</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts untuk tampilan ceria anak SD kelas 4 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
+
+    <style>
+        /* Pengaturan Font Utama & Latar Belakang Ceria */
+        body {
+            font-family: 'Nunito', 'Fredoka', sans-serif;
+            background-color: #FFFBEB;
+            background-image: 
+                radial-gradient(#FDE68A 2.5px, transparent 2.5px),
+                radial-gradient(#BAE6FD 2.5px, #FFFBEB 2.5px);
+            background-size: 42px 42px;
+            background-position: 0 0, 21px 21px;
+            overflow-x: hidden;
+        }
+
+        .font-display {
+            font-family: 'Fredoka', 'Nunito', sans-serif;
+        }
+
+        /* Prioritas font FZKai (FangZheng KaiTi) dan SimSun sesuai perangkat yang dipakai */
+        .hanzi-font {
+            font-family: "FZKai-Z03", "FZKai-Z03S", "FZKTK--GBK1-0", "FangZhengKaiTi", "KaiTi", "STKaiti", "BiauKai", "DFKai-SB", "SimSun", "NSimSun", "Songti SC", serif !important;
+            font-weight: 500;
+        }
+
+        /* Mematikan seleksi teks dan callout pada seluruh elemen kecuali kolom input pencarian */
+        * {
+            -webkit-user-select: none !important;
+            -moz-user-select: none !important;
+            -ms-user-select: none !important;
+            user-select: none !important;
+            -webkit-touch-callout: none !important;
+        }
+
+        input[type="text"] {
+            -webkit-user-select: text !important;
+            -moz-user-select: text !important;
+            -ms-user-select: text !important;
+            user-select: text !important;
+        }
+
+        /* Menyembunyikan konten saat pengguna mencoba mencetak halaman (Ctrl+P) */
+        @media print {
+            body {
+                display: none !important;
+            }
+        }
+
+        /* Animasi Kartu 3D Flip */
+        .flip-card {
+            perspective: 1200px;
+            cursor: pointer;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transform-style: preserve-3d;
+        }
+
+        .flip-card.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-front, .flip-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 1.5rem;
+        }
+
+        .flip-back {
+            transform: rotateY(180deg);
+        }
+
+        /* Efek Tombol 3D Ceria */
+        .btn-pop {
+            transition: transform 0.12s ease, box-shadow 0.12s ease;
+        }
+        .btn-pop:active {
+            transform: translateY(3px);
+        }
+
+        /* Animasi Bintang Melayang saat mendapat poin */
+        @keyframes floatStar {
+            0% {
+                opacity: 1;
+                transform: translateY(0) scale(0.7) rotate(0deg);
+            }
+            50% {
+                opacity: 1;
+                transform: translateY(-45px) scale(1.25) rotate(18deg);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-85px) scale(1) rotate(-15deg);
+            }
+        }
+
+        .star-particle {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            animation: floatStar 0.95s ease-out forwards;
+        }
+
+        /* Animasi Gelombang Suara Speaker */
+        @keyframes pulseSpeaker {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.22); }
+        }
+        .speaking-active {
+            animation: pulseSpeaker 0.55s infinite ease-in-out;
+            background-color: #F59E0B !important;
+            color: #FFFFFF !important;
+        }
+
+        /* Animasi Getar Halus Saat Jawaban Kuis Kurang Tepat */
+        @keyframes gentleShake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-6px); }
+            50% { transform: translateX(6px); }
+            75% { transform: translateX(-4px); }
+        }
+        .shake-anim {
+            animation: gentleShake 0.35s ease-in-out;
+        }
+
+        /* Custom Scrollbar Ceria */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FEF3C7;
+            border-radius: 999px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #F59E0B;
+            border-radius: 999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #D97706;
+        }
+
+        /* Layar Pelindung Anti-Screenshot */
+        .privacy-shield {
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col text-slate-800 notranslate" translate="no">
+
+    <!-- Notifikasi Peringatan Proteksi / Info (Menggantikan alert()) -->
+    <div id="securityToast" class="fixed top-20 left-1/2 -translate-x-1/2 z-[100] hidden items-center gap-2 bg-rose-600 text-white px-5 py-3 rounded-full shadow-2xl border-2 border-white font-bold text-xs sm:text-sm md:text-base transition-all duration-300 text-center max-w-[92vw]">
+        <span id="securityToastIcon">🛡️</span>
+        <span id="securityToastMsg">Fitur salin, inspeksi, dan tangkapan layar dinonaktifkan!</span>
+    </div>
+
+    <!-- Layar Pelindung Saat Tombol PrintScreen / Shortcut Screenshot Terdeteksi -->
+    <div id="privacyShieldOverlay" class="fixed inset-0 z-[110] hidden privacy-shield bg-amber-500/95 flex-col items-center justify-center p-6 text-center text-white">
+        <div class="bg-white text-slate-800 rounded-3xl p-7 sm:p-8 max-w-md shadow-2xl border-4 border-amber-400">
+            <div class="text-6xl mb-4">🛡️</div>
+            <h2 class="font-display text-2xl font-bold text-rose-600 mb-2">Tangkapan Layar Diblokir!</h2>
+            <p class="text-slate-600 font-semibold mb-6">
+                Materi belajar HSK 1 ini dilindungi oleh <span class="text-indigo-600 font-extrabold">lcnpalembang</span>. Silakan lanjutkan belajar langsung di aplikasi ya!
+            </p>
+            <button type="button" onclick="hidePrivacyShield()" class="btn-pop bg-gradient-to-r from-amber-400 to-orange-500 text-white font-display font-bold px-6 py-3 rounded-2xl shadow-[0_4px_0_#C2410C] text-lg cursor-pointer">
+                Lanjut Belajar 🚀
+            </button>
+        </div>
+    </div>
+
+    <!-- HEADER UTAMA -->
+    <header class="sticky top-0 z-40 bg-gradient-to-r from-sky-500 via-indigo-500 to-purple-500 text-white shadow-lg border-b-4 border-amber-300">
+        <div class="max-w-[1440px] mx-auto px-3 sm:px-6 py-3 flex flex-wrap items-center justify-between gap-3">
+            
+            <!-- Pojok Kiri Atas: Identitas lcnpalembang -->
+            <div class="flex items-center gap-2.5">
+                <div class="bg-amber-300 text-indigo-900 w-10 h-10 sm:w-11 sm:h-11 rounded-2xl flex items-center justify-center text-2xl shadow-[0_3px_0_#D97706] font-bold shrink-0">
+                    🐼
+                </div>
+                <div>
+                    <div class="font-display font-extrabold text-lg sm:text-xl tracking-wide text-amber-200 drop-shadow-sm leading-none">
+                        lcnpalembang
+                    </div>
+                    <div class="text-[11px] sm:text-xs font-bold text-sky-100 mt-0.5">
+                        Petualangan HSK 1  
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bagian Tengah Atas: Pencarian Hanzi HSK 1 -->
+            <form id="searchForm" onsubmit="handleSearch(event)" class="order-3 lg:order-2 w-full lg:w-auto lg:flex-1 lg:max-w-xl flex items-center gap-2">
+                <div class="relative flex-1">
+                    <input 
+                        type="text" 
+                        id="searchInput" 
+                        placeholder="Cari Hanzi, Pinyin, atau Arti HSK 1..." 
+                        autocomplete="off"
+                        spellcheck="false"
+                        class="w-full pl-4 pr-9 py-2.5 rounded-2xl bg-white text-slate-800 placeholder-slate-400 font-bold text-sm sm:text-base border-2 border-amber-300 focus:outline-none focus:ring-4 focus:ring-amber-300/50 shadow-inner"
+                    >
+                    <button 
+                        type="button" 
+                        id="clearSearchBtn" 
+                        onclick="clearSearch()" 
+                        title="Hapus pencarian"
+                        class="hidden absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-rose-500 font-extrabold text-lg px-1 cursor-pointer"
+                    >
+                        ✕
+                    </button>
+                </div>
+                <button 
+                    type="submit" 
+                    class="btn-pop bg-amber-400 hover:bg-amber-300 text-indigo-950 font-display font-bold px-4 sm:px-5 py-2.5 rounded-2xl shadow-[0_4px_0_#B45309] flex items-center gap-1.5 text-sm sm:text-base shrink-0 cursor-pointer"
+                >
+                    <span>🔍</span>
+                    <span>Cari</span>
+                </button>
+            </form>
+
+            <!-- Bagian Kanan Atas: Papan Skor Gamifikasi & Tombol Acak -->
+            <div class="order-2 lg:order-3 flex items-center gap-2 sm:gap-3">
+                <!-- Poin Bintang -->
+                <div class="bg-white/20 backdrop-blur-sm border-2 border-amber-300/80 px-3 py-1.5 rounded-2xl flex items-center gap-1.5 shadow-sm" title="Total Bintang Kamu">
+                    <span class="text-lg sm:text-xl">⭐</span>
+                    <span id="starCount" class="font-display font-extrabold text-base sm:text-lg text-amber-200">0</span>
+                </div>
+
+                <!-- Progres Hafal -->
+                <div class="bg-white/20 backdrop-blur-sm border-2 border-emerald-300/80 px-3 py-1.5 rounded-2xl flex items-center gap-1.5 shadow-sm" title="Kosakata Sudah Hafal">
+                    <span class="text-lg sm:text-xl">🏆</span>
+                    <span id="masteredCount" class="font-display font-extrabold text-xs sm:text-sm text-emerald-200">0/0</span>
+                </div>
+
+                <!-- Tombol Acak Ulang Kartu -->
+                <button 
+                    type="button" 
+                    onclick="reshuffleAll()" 
+                    title="Acak Ulang Urutan Kosakata"
+                    class="btn-pop bg-emerald-400 hover:bg-emerald-300 text-emerald-950 font-display font-bold px-3 py-1.5 sm:py-2 rounded-2xl shadow-[0_3px_0_#047857] flex items-center gap-1 text-xs sm:text-sm cursor-pointer"
+                >
+                    <span>🎲</span>
+                    <span class="hidden sm:inline">Acak</span>
+                </button>
+            </div>
+
+        </div>
+    </header>
+
+    <!-- KONTEN UTAMA: 2 BAGIAN (KIRI DAFTAR ISI BAB & KANAN TAMPILAN KOSAKATA) -->
+    <main class="flex-1 max-w-[1440px] w-full mx-auto px-3 sm:px-6 py-4 sm:py-6">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-4 sm:gap-6 items-start">
+            
+            <!-- BAGIAN SEBELAH KIRI: DAFTAR ISI PER BAB + JUDUL -->
+            <aside class="md:col-span-4 lg:col-span-3 bg-white rounded-3xl shadow-xl border-4 border-sky-300 overflow-hidden md:sticky md:top-24">
+                <div class="bg-gradient-to-r from-sky-400 to-cyan-400 px-4 py-3.5 text-white flex items-center justify-between border-b-4 border-sky-200">
+                    <div class="flex items-center gap-2">
+                        <span class="text-2xl">📚</span>
+                        <h2 class="font-display font-bold text-lg tracking-wide">Daftar Bab HSK 1</h2>
+                    </div>
+                    <span class="bg-white/25 text-white text-xs font-extrabold px-2.5 py-1 rounded-full">15 Bab</span>
+                </div>
+
+                <!-- Daftar Tombol Bab 1 - 15 -->
+                <div id="chapterList" class="p-2.5 space-y-2 max-h-[340px] md:max-h-[calc(100vh-190px)] overflow-y-auto">
+                    <!-- Diisi secara dinamis oleh JavaScript -->
+                </div>
+            </aside>
+
+            <!-- BAGIAN SEBELAH KANAN: TAMPILAN KOSAKATA BESAR & JELAS -->
+            <section class="md:col-span-8 lg:col-span-9 space-y-4 sm:space-y-5">
+                
+                <!-- Banner Judul Bab Aktif & Pengalih Mode -->
+                <div id="lessonBanner" class="bg-white rounded-3xl p-4 sm:p-6 shadow-xl border-4 border-amber-300 relative overflow-hidden">
+                    <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+                        <div class="space-y-1">
+                            <div class="flex flex-wrap items-center gap-2">
+                                <span id="activeBadge" class="bg-amber-400 text-amber-950 font-display font-extrabold text-xs sm:text-sm px-3 py-1 rounded-full shadow-sm">
+                                    Bab 1
+                                </span>
+                                <span id="activeWordTotal" class="bg-sky-100 text-sky-700 font-extrabold text-xs sm:text-sm px-3 py-1 rounded-full">
+                                    11 Kosakata
+                                </span>
+                                <span class="bg-purple-100 text-purple-700 font-bold text-xs px-2.5 py-1 rounded-full">
+                                    🔀 Urutan Diacak Otomatis
+                                </span>
+                            </div>
+
+                            <!-- Judul Pelajaran dengan Tombol Speaker -->
+                            <div class="flex items-center gap-3 pt-1">
+                                <h1 id="activeLessonTitle" class="hanzi-font text-2xl sm:text-4xl font-bold text-indigo-950 leading-snug">
+                                    第一课 AI小语，你好
+                                </h1>
+                                <button 
+                                    id="titleSpeakerBtn"
+                                    type="button" 
+                                    onclick="speakCurrentTitle()"
+                                    title="Dengarkan Judul Bab"
+                                    class="btn-pop shrink-0 w-11 h-11 rounded-2xl bg-sky-100 hover:bg-sky-200 text-sky-600 border-2 border-sky-300 flex items-center justify-center text-xl shadow-[0_3px_0_#7DD3FC] cursor-pointer"
+                                >
+                                    🔊
+                                </button>
+                            </div>
+                            <p id="activeLessonSubtitle" class="text-xs sm:text-sm font-bold text-slate-500">
+                                Klik ikon 🔊 untuk mendengar suara, atau klik kartu kosakata untuk melihat Pinyin &amp; Arti (Indonesia &amp; Inggris)!
+                            </p>
+                        </div>
+
+                        <!-- Pilihan Mode Gamifikasi: Kartu Belajar vs Kuis Seru -->
+                        <div class="flex items-center gap-2 bg-amber-50 p-1.5 rounded-2xl border-2 border-amber-200 shrink-0 self-start lg:self-center">
+                            <button 
+                                id="modeFlashcardBtn"
+                                type="button"
+                                onclick="switchMode('flashcard')"
+                                class="btn-pop px-3.5 py-2 rounded-xl font-display font-bold text-xs sm:text-sm flex items-center gap-1.5 bg-indigo-600 text-white shadow-sm cursor-pointer"
+                            >
+                                <span>🃏</span>
+                                <span>Kartu Kosakata</span>
+                            </button>
+                            <button 
+                                id="modeQuizBtn"
+                                type="button"
+                                onclick="switchMode('quiz')"
+                                class="btn-pop px-3.5 py-2 rounded-xl font-display font-bold text-xs sm:text-sm flex items-center gap-1.5 text-slate-600 hover:bg-amber-100 cursor-pointer"
+                            >
+                                <span>🎯</span>
+                                <span>Kuis Seru</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AREA 1: GRID KARTU KOSAKATA (FLASHCARDS) -->
+                <div id="flashcardContainer" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 sm:gap-5">
+                    <!-- Kartu kosakata dirender di sini -->
+                </div>
+
+                <!-- AREA 2: MINI GAME KUIS TEBAK CEPAT -->
+                <div id="quizContainer" class="hidden bg-white rounded-3xl p-5 sm:p-8 shadow-xl border-4 border-emerald-300">
+                    <!-- Konten kuis dirender di sini -->
+                </div>
+
+            </section>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="mt-8 bg-gradient-to-r from-indigo-900 via-purple-900 to-indigo-900 text-white py-4 px-4 text-center border-t-4 border-amber-400">
+        <p class="font-display font-semibold text-xs sm:text-sm md:text-base tracking-wide text-amber-200">
+            HSK 1 New Words - Copyright @lcnpalembang-08994477998
+        </p>
+    </footer>
+
+    <script>
+        /**
+         * DATA KOSAKATA LENGKAP HSK 1 (BAB 1 - BAB 15)
+         * Setiap entri memiliki: hanzi, pinyin, en (Bahasa Inggris), id (Bahasa Indonesia)
+         */
+        const RAW_HSK1_DATA = [
+            {
+                lesson: 1,
+                title: "第一课 AI小语，你好",
+                words: [
+                    { hanzi: "大家", pinyin: "dàjiā", en: "Everyone / Everybody", id: "Semua orang" },
+                    { hanzi: "好", pinyin: "hǎo", en: "Good / Well / Fine", id: "Baik" },
+                    { hanzi: "学生", pinyin: "xuésheng", en: "Student", id: "Siswa / Murid" },
+                    { hanzi: "们", pinyin: "men", en: "Plural marker (for people)", id: "Para / Kalian (kata jamak)" },
+                    { hanzi: "老师", pinyin: "lǎoshī", en: "Teacher", id: "Guru" },
+                    { hanzi: "您", pinyin: "nín", en: "You (polite)", id: "Anda (sopan)" },
+                    { hanzi: "你们", pinyin: "nǐmen", en: "You (plural)", id: "Kalian" },
+                    { hanzi: "谢谢", pinyin: "xièxie", en: "Thank you", id: "Terima kasih" },
+                    { hanzi: "不客气", pinyin: "bú kèqi", en: "You're welcome", id: "Sama-sama" },
+                    { hanzi: "同学", pinyin: "tóngxué", en: "Classmate", id: "Teman sekelas" },
+                    { hanzi: "再见", pinyin: "zàijiàn", en: "Goodbye / See you", id: "Sampai jumpa" }
+                ]
+            },
+            {
+                lesson: 2,
+                title: "第二课 我叫李文",
+                words: [
+                    { hanzi: "请问", pinyin: "qǐngwèn", en: "Excuse me / May I ask", id: "Permisi / Numpang tanya" },
+                    { hanzi: "你", pinyin: "nǐ", en: "You", id: "Kamu" },
+                    { hanzi: "叫", pinyin: "jiào", en: "To be called / To call", id: "Bernama / Memanggil" },
+                    { hanzi: "什么", pinyin: "shénme", en: "What", id: "Apa" },
+                    { hanzi: "名字", pinyin: "míngzi", en: "Name", id: "Nama" },
+                    { hanzi: "我", pinyin: "wǒ", en: "I / Me", id: "Saya / Aku" },
+                    { hanzi: "不", pinyin: "bù", en: "No / Not", id: "Tidak / Bukan" },
+                    { hanzi: "是", pinyin: "shì", en: "To be (am / is / are)", id: "Adalah / Iya" },
+                    { hanzi: "对不起", pinyin: "duìbuqǐ", en: "I'm sorry", id: "Maaf" },
+                    { hanzi: "没关系", pinyin: "méi guānxi", en: "It doesn't matter / No problem", id: "Tidak apa-apa" },
+                    { hanzi: "没事", pinyin: "méishì", en: "It's nothing / Never mind", id: "Tidak masalah" },
+                    { hanzi: "很", pinyin: "hěn", en: "Very", id: "Sangat" },
+                    { hanzi: "高兴", pinyin: "gāoxìng", en: "Happy / Glad", id: "Senang / Gembira" },
+                    { hanzi: "认识", pinyin: "rènshi", en: "To know / To meet", id: "Kenal / Mengenal" },
+                    { hanzi: "也", pinyin: "yě", en: "Also / Too", id: "Juga" }
+                ]
+            },
+            {
+                lesson: 3,
+                title: "第三课 我是中国人",
+                words: [
+                    { hanzi: "人", pinyin: "rén", en: "Person / People", id: "Orang" },
+                    { hanzi: "的", pinyin: "de", en: "Possessive particle ('s)", id: "Milik / Punya (partikel)" },
+                    { hanzi: "中国", pinyin: "Zhōngguó", en: "China", id: "Tiongkok" },
+                    { hanzi: "法国", pinyin: "Fǎguó", en: "France", id: "Prancis" },
+                    { hanzi: "中文", pinyin: "Zhōngwén", en: "Chinese language", id: "Bahasa Mandarin" },
+                    { hanzi: "这", pinyin: "zhè", en: "This", id: "Ini" },
+                    { hanzi: "谁", pinyin: "shéi", en: "Who", id: "Siapa" },
+                    { hanzi: "女朋友", pinyin: "nǚpéngyou", en: "Girlfriend", id: "Pacar perempuan" },
+                    { hanzi: "哪", pinyin: "nǎ", en: "Which", id: "Yang mana" },
+                    { hanzi: "国", pinyin: "guó", en: "Country / Nation", id: "Negara" },
+                    { hanzi: "她", pinyin: "tā", en: "She / Her", id: "Dia (perempuan)" },
+                    { hanzi: "泰国", pinyin: "Tàiguó", en: "Thailand", id: "Thailand" },
+                    { hanzi: "喂", pinyin: "wèi", en: "Hello (on phone)", id: "Halo (di telepon)" },
+                    { hanzi: "姐姐", pinyin: "jiějie", en: "Older sister", id: "Kakak perempuan" },
+                    { hanzi: "工作", pinyin: "gōngzuò", en: "Work / Job", id: "Bekerja / Pekerjaan" },
+                    { hanzi: "还", pinyin: "hái", en: "Still / Fairly / Also", id: "Masih / Lumayan" },
+                    { hanzi: "忙", pinyin: "máng", en: "Busy", id: "Sibuk" },
+                    { hanzi: "吗", pinyin: "ma", en: "Question particle", id: "Apakah (partikel tanya)" },
+                    { hanzi: "对", pinyin: "duì", en: "Correct / Right", id: "Benar / Betul" },
+                    { hanzi: "太", pinyin: "tài", en: "Too / Extremely", id: "Terlalu / Sangat" },
+                    { hanzi: "我们", pinyin: "wǒmen", en: "We / Us", id: "Kami / Kita" },
+                    { hanzi: "想", pinyin: "xiǎng", en: "To think / To miss / Want", id: "Ingin / Rindu / Berpikir" }
+                ]
+            },
+            {
+                lesson: 4,
+                title: "第四课 我有两个孩子",
+                words: [
+                    { hanzi: "有", pinyin: "yǒu", en: "To have / There is", id: "Punya / Ada" },
+                    { hanzi: "多少", pinyin: "duōshao", en: "How many / How much", id: "Berapa banyak" },
+                    { hanzi: "个", pinyin: "gè", en: "General measure word", id: "Buah / Orang (kata satuan)" },
+                    { hanzi: "哥哥", pinyin: "gēge", en: "Older brother", id: "Kakak laki-laki" },
+                    { hanzi: "呢", pinyin: "ne", en: "Question particle (How about...)", id: "Bagaimana dengan... (partikel)" },
+                    { hanzi: "没有", pinyin: "méiyǒu", en: "Do not have / There isn't", id: "Tidak punya / Tidak ada" },
+                    { hanzi: "家", pinyin: "jiā", en: "Home / Family", id: "Rumah / Keluarga" },
+                    { hanzi: "几", pinyin: "jǐ", en: "How many (small numbers)", id: "Berapa" },
+                    { hanzi: "口", pinyin: "kǒu", en: "Measure word for family members", id: "Orang (satuan anggota keluarga)" },
+                    { hanzi: "爸爸", pinyin: "bàba", en: "Dad / Father", id: "Ayah / Papa" },
+                    { hanzi: "妈妈", pinyin: "māma", en: "Mom / Mother", id: "Ibu / Mama" },
+                    { hanzi: "妹妹", pinyin: "mèimei", en: "Younger sister", id: "Adik perempuan" },
+                    { hanzi: "和", pinyin: "hé", en: "And", id: "Dan" },
+                    { hanzi: "儿子", pinyin: "érzi", en: "Son", id: "Anak laki-laki" },
+                    { hanzi: "孩子", pinyin: "háizi", en: "Child / Children", id: "Anak" },
+                    { hanzi: "女儿", pinyin: "nǚ'ér", en: "Daughter", id: "Anak perempuan" },
+                    { hanzi: "岁", pinyin: "suì", en: "Years old", id: "Tahun (usia/umur)" },
+                    { hanzi: "他", pinyin: "tā", en: "He / Him", id: "Dia (laki-laki)" },
+                    { hanzi: "今年", pinyin: "jīnnián", en: "This year", id: "Tahun ini" },
+                    { hanzi: "多", pinyin: "duō", en: "Many / Much / How (old)", id: "Banyak / Berapa" },
+                    { hanzi: "大", pinyin: "dà", en: "Big / Large / Old", id: "Besar / Tua" }
+                ]
+            },
+            {
+                lesson: 5,
+                title: "第五课",
+                words: [
+                    { hanzi: "今天", pinyin: "jīntiān", en: "Today", id: "Hari ini" },
+                    { hanzi: "号", pinyin: "hào", en: "Date / Number", id: "Tanggal / Nomor" },
+                    { hanzi: "月", pinyin: "yuè", en: "Month / Moon", id: "Bulan" },
+                    { hanzi: "日", pinyin: "rì", en: "Day / Date / Sun", id: "Hari / Tanggal" },
+                    { hanzi: "星期", pinyin: "xīngqī", en: "Week", id: "Minggu (pekan)" },
+                    { hanzi: "星期日", pinyin: "xīngqīrì", en: "Sunday", id: "Hari Minggu" },
+                    { hanzi: "星期天", pinyin: "xīngqītiān", en: "Sunday", id: "Hari Minggu" },
+                    { hanzi: "休息", pinyin: "xiūxi", en: "To rest", id: "Istirahat" },
+                    { hanzi: "会", pinyin: "huì", en: "Can / Know how to", id: "Bisa / Dapat" },
+                    { hanzi: "做饭", pinyin: "zuòfàn", en: "To cook", id: "Memasak" },
+                    { hanzi: "做", pinyin: "zuò", en: "To do / To make", id: "Membuat / Melakukan" },
+                    { hanzi: "面条儿", pinyin: "miàntiáor", en: "Noodles", id: "Mi" },
+                    { hanzi: "饺子", pinyin: "jiǎozi", en: "Dumplings", id: "Pangsit (Jiaozi)" },
+                    { hanzi: "一些", pinyin: "yìxiē", en: "Some / A few", id: "Beberapa" },
+                    { hanzi: "菜", pinyin: "cài", en: "Dish / Vegetable", id: "Sayur / Masakan" },
+                    { hanzi: "下班", pinyin: "xiàbān", en: "To get off work", id: "Pulang kerja" },
+                    { hanzi: "新", pinyin: "xīn", en: "New", id: "Baru" },
+                    { hanzi: "电脑", pinyin: "diànnǎo", en: "Computer", id: "Komputer" },
+                    { hanzi: "真", pinyin: "zhēn", en: "Really / Truly", id: "Sungguh / Benar-benar" },
+                    { hanzi: "好看", pinyin: "hǎokàn", en: "Good-looking / Pretty", id: "Bagus / Cantik / Menarik" },
+                    { hanzi: "喜欢", pinyin: "xǐhuan", en: "To like", id: "Suka" },
+                    { hanzi: "它", pinyin: "tā", en: "It (animals / objects)", id: "Ia / Itu (hewan/benda)" }
+                ]
+            },
+            {
+                lesson: 6,
+                title: "第六课 你的手机号是多少？",
+                words: [
+                    { hanzi: "手机", pinyin: "shǒujī", en: "Mobile phone / Cellphone", id: "Ponsel / HP" },
+                    { hanzi: "电话", pinyin: "diànhuà", en: "Telephone", id: "Telepon" },
+                    { hanzi: "号", pinyin: "hào", en: "Number", id: "Nomor" },
+                    { hanzi: "明天", pinyin: "míngtiān", en: "Tomorrow", id: "Besok" },
+                    { hanzi: "去", pinyin: "qù", en: "To go", id: "Pergi" },
+                    { hanzi: "哪儿", pinyin: "nǎr", en: "Where", id: "Di mana / Ke mana" },
+                    { hanzi: "想", pinyin: "xiǎng", en: "Would like to / Want", id: "Ingin" },
+                    { hanzi: "超市", pinyin: "chāoshì", en: "Supermarket", id: "Supermarket / Swalayan" },
+                    { hanzi: "买", pinyin: "mǎi", en: "To buy", id: "Membeli" },
+                    { hanzi: "东西", pinyin: "dōngxi", en: "Thing / Stuff", id: "Barang / Benda" },
+                    { hanzi: "些", pinyin: "xiē", en: "Some", id: "Beberapa" },
+                    { hanzi: "牛奶", pinyin: "niúnǎi", en: "Milk", id: "Susu sapi" },
+                    { hanzi: "吃", pinyin: "chī", en: "To eat", id: "Makan" },
+                    { hanzi: "晚饭", pinyin: "wǎnfàn", en: "Dinner", id: "Makan malam" },
+                    { hanzi: "那边", pinyin: "nàbiān", en: "Over there", id: "Di sebelah sana" },
+                    { hanzi: "包子", pinyin: "bāozi", en: "Steamed stuffed bun", id: "Bakpao" },
+                    { hanzi: "非常", pinyin: "fēicháng", en: "Very / Extremely", id: "Sangat / Luar biasa" },
+                    { hanzi: "好吃", pinyin: "hǎochī", en: "Delicious / Tasty", id: "Enak / Lezat" },
+                    { hanzi: "米饭", pinyin: "mǐfàn", en: "Cooked rice", id: "Nasi" },
+                    { hanzi: "怎么", pinyin: "zěnme", en: "How", id: "Bagaimana" },
+                    { hanzi: "坐", pinyin: "zuò", en: "To sit / To take (transport)", id: "Duduk / Naik (kendaraan)" },
+                    { hanzi: "出租车", pinyin: "chūzūchē", en: "Taxi", id: "Taksi" },
+                    { hanzi: "西安饭店", pinyin: "Xī'ān Fàndiàn", en: "Xi'an Restaurant", id: "Restoran Xi'an" }
+                ]
+            },
+            {
+                lesson: 7,
+                title: "第七课 我晚上六点半下班",
+                words: [
+                    { hanzi: "现在", pinyin: "xiànzài", en: "Now", id: "Sekarang" },
+                    { hanzi: "点", pinyin: "diǎn", en: "O'clock", id: "Jam / Pukul" },
+                    { hanzi: "早上", pinyin: "zǎoshang", en: "Early morning", id: "Pagi hari" },
+                    { hanzi: "上午", pinyin: "shàngwǔ", en: "Morning (before noon)", id: "Pagi menjelang siang" },
+                    { hanzi: "分", pinyin: "fēn", en: "Minute", id: "Menit" },
+                    { hanzi: "课", pinyin: "kè", en: "Class / Lesson", id: "Pelajaran / Kelas" },
+                    { hanzi: "下午", pinyin: "xiàwǔ", en: "Afternoon", id: "Sore / Siang" },
+                    { hanzi: "见", pinyin: "jiàn", en: "To see / To meet", id: "Bertemu / Melihat" },
+                    { hanzi: "吧", pinyin: "ba", en: "Suggestion particle", id: "Ayo / Lah (partikel ajakan)" },
+                    { hanzi: "电影院", pinyin: "diànyǐngyuàn", en: "Cinema / Movie theater", id: "Bioskop" },
+                    { hanzi: "看", pinyin: "kàn", en: "To watch / To look", id: "Menonton / Melihat" },
+                    { hanzi: "电影", pinyin: "diànyǐng", en: "Movie / Film", id: "Film" },
+                    { hanzi: "事", pinyin: "shì", en: "Matter / Affair / Thing", id: "Urusan / Hal" },
+                    { hanzi: "上课", pinyin: "shàngkè", en: "To attend class", id: "Masuk kelas / Mulai pelajaran" },
+                    { hanzi: "呢", pinyin: "ne", en: "Particle indicating ongoing action", id: "Sedang (partikel)" },
+                    { hanzi: "半", pinyin: "bàn", en: "Half", id: "Setengah" },
+                    { hanzi: "下课", pinyin: "xiàkè", en: "To finish class", id: "Selesai pelajaran / Pulang sekolah" },
+                    { hanzi: "在", pinyin: "zài", en: "At / In / On", id: "Di / Berada di" },
+                    { hanzi: "家", pinyin: "jiā", en: "Home", id: "Rumah" },
+                    { hanzi: "里", pinyin: "lǐ", en: "Inside", id: "Di dalam" },
+                    { hanzi: "晚上", pinyin: "wǎnshang", en: "Evening / Night", id: "Malam hari" },
+                    { hanzi: "医院", pinyin: "yīyuàn", en: "Hospital", id: "Rumah sakit" },
+                    { hanzi: "上班", pinyin: "shàngbān", en: "To go to work", id: "Masuk kerja" },
+                    { hanzi: "菜", pinyin: "cài", en: "Dish / Food", id: "Masakan / Lauk" },
+                    { hanzi: "分钟", pinyin: "fēnzhōng", en: "Minute", id: "Menit" },
+                    { hanzi: "后", pinyin: "hòu", en: "After / Behind", id: "Setelah / Belakang" }
+                ]
+            },
+            {
+                lesson: 8,
+                title: "第八课 我爸爸也在医院工作",
+                words: [
+                    { hanzi: "房间", pinyin: "fángjiān", en: "Room", id: "Kamar / Ruangan" },
+                    { hanzi: "外", pinyin: "wài", en: "Outside", id: "Luar" },
+                    { hanzi: "只", pinyin: "zhī", en: "Measure word for animals", id: "Ekor (kata satuan hewan)" },
+                    { hanzi: "小", pinyin: "xiǎo", en: "Small / Little", id: "Kecil" },
+                    { hanzi: "猫", pinyin: "māo", en: "Cat", id: "Kucing" },
+                    { hanzi: "没", pinyin: "méi", en: "Not / Didn't", id: "Tidak / Belum" },
+                    { hanzi: "看见", pinyin: "kànjiàn", en: "To see", id: "Melihat / Tampak" },
+                    { hanzi: "桌子", pinyin: "zhuōzi", en: "Table / Desk", id: "Meja" },
+                    { hanzi: "下", pinyin: "xià", en: "Under / Below", id: "Bawah" },
+                    { hanzi: "漂亮", pinyin: "piàoliang", en: "Pretty / Beautiful", id: "Cantik / Indah" },
+                    { hanzi: "在", pinyin: "zài", en: "In / At", id: "Di" },
+                    { hanzi: "学校", pinyin: "xuéxiào", en: "School", id: "Sekolah" },
+                    { hanzi: "书店", pinyin: "shūdiàn", en: "Bookstore", id: "Toko buku" },
+                    { hanzi: "前", pinyin: "qián", en: "Front / Before", id: "Depan / Sebelum" },
+                    { hanzi: "能", pinyin: "néng", en: "Can / To be able to", id: "Bisa / Mampu" },
+                    { hanzi: "到", pinyin: "dào", en: "To arrive", id: "Sampai / Tiba" },
+                    { hanzi: "午饭", pinyin: "wǔfàn", en: "Lunch", id: "Makan siang" },
+                    { hanzi: "饭", pinyin: "fàn", en: "Meal / Cooked rice", id: "Nasi / Makanan" },
+                    { hanzi: "大", pinyin: "dà", en: "Big / Large", id: "Besar" },
+                    { hanzi: "病人", pinyin: "bìngrén", en: "Patient", id: "Pasien" },
+                    { hanzi: "多", pinyin: "duō", en: "Many / Much", id: "Banyak" },
+                    { hanzi: "医生", pinyin: "yīshēng", en: "Doctor", id: "Dokter" },
+                    { hanzi: "工作", pinyin: "gōngzuò", en: "Work / Job", id: "Bekerja" }
+                ]
+            },
+            {
+                lesson: 9,
+                title: "第九课 我明天上午在学校学习",
+                words: [
+                    { hanzi: "前边", pinyin: "qiánbiān", en: "In front", id: "Sebelah depan" },
+                    { hanzi: "边", pinyin: "biān", en: "Side", id: "Sisi / Sebelah" },
+                    { hanzi: "家", pinyin: "jiā", en: "Home", id: "Rumah" },
+                    { hanzi: "那个", pinyin: "nàge", en: "That one", id: "Yang itu" },
+                    { hanzi: "外边", pinyin: "wàibiān", en: "Outside", id: "Sebelah luar" },
+                    { hanzi: "椅子", pinyin: "yǐzi", en: "Chair", id: "Kursi" },
+                    { hanzi: "上", pinyin: "shàng", en: "On / Above", id: "Atas" },
+                    { hanzi: "本", pinyin: "běn", en: "Measure word for books", id: "Buah / Jilid (satuan buku)" },
+                    { hanzi: "书", pinyin: "shū", en: "Book", id: "Buku" },
+                    { hanzi: "那", pinyin: "nà", en: "That", id: "Itu" },
+                    { hanzi: "第", pinyin: "dì", en: "Prefix for ordinal numbers", id: "Ke- (urutan)" },
+                    { hanzi: "学校", pinyin: "xuéxiào", en: "School", id: "Sekolah" },
+                    { hanzi: "做", pinyin: "zuò", en: "To do", id: "Mengerjakan / Melakukan" },
+                    { hanzi: "白天", pinyin: "báitiān", en: "Daytime", id: "Siang hari" },
+                    { hanzi: "读书", pinyin: "dúshū", en: "To read books / To study", id: "Membaca buku / Belajar" },
+                    { hanzi: "和", pinyin: "hé", en: "With / And", id: "Dengan / Dan" },
+                    { hanzi: "朋友", pinyin: "péngyou", en: "Friend", id: "Teman" },
+                    { hanzi: "唱", pinyin: "chàng", en: "To sing", id: "Menyanyi" },
+                    { hanzi: "歌", pinyin: "gē", en: "Song", id: "Lagu" },
+                    { hanzi: "好听", pinyin: "hǎotīng", en: "Pleasant to hear", id: "Merdu / Enak didengar" },
+                    { hanzi: "电视", pinyin: "diànshì", en: "Television (TV)", id: "Televisi (TV)" },
+                    { hanzi: "狗", pinyin: "gǒu", en: "Dog", id: "Anjing" },
+                    { hanzi: "玩", pinyin: "wán", en: "To play", id: "Bermain" }
+                ]
+            },
+            {
+                lesson: 10,
+                title: "第十课 这儿的苹果真便宜",
+                words: [
+                    { hanzi: "杯子", pinyin: "bēizi", en: "Cup / Glass", id: "Gelas / Cangkir" },
+                    { hanzi: "售货员", pinyin: "shòuhuòyuán", en: "Salesperson / Shop assistant", id: "Penjaga toko / Pelayan toko" },
+                    { hanzi: "这边", pinyin: "zhèbiān", en: "Over here", id: "Sebelah sini" },
+                    { hanzi: "钱", pinyin: "qián", en: "Money", id: "Uang" },
+                    { hanzi: "这些", pinyin: "zhèxiē", en: "These", id: "Ini semua" },
+                    { hanzi: "快", pinyin: "kuài", en: "Fast / Quick", id: "Cepat" },
+                    { hanzi: "那些", pinyin: "nàxiē", en: "Those", id: "Itu semua" },
+                    { hanzi: "这儿", pinyin: "zhèr", en: "Here", id: "Di sini" },
+                    { hanzi: "水果", pinyin: "shuǐguǒ", en: "Fruit", id: "Buah-buahan" },
+                    { hanzi: "少", pinyin: "shǎo", en: "Few / Little", id: "Sedikit" },
+                    { hanzi: "斤", pinyin: "jīn", en: "Half a kilogram (500g)", id: "Kati (satuan berat 500g)" },
+                    { hanzi: "苹果", pinyin: "píngguǒ", en: "Apple", id: "Apel" },
+                    { hanzi: "便宜", pinyin: "piányi", en: "Cheap / Inexpensive", id: "Murah" },
+                    { hanzi: "商店", pinyin: "shāngdiàn", en: "Shop / Store", id: "Toko" },
+                    { hanzi: "衣服", pinyin: "yīfu", en: "Clothes", id: "Baju / Pakaian" },
+                    { hanzi: "件", pinyin: "jiàn", en: "Measure word for clothes", id: "Helai / Potong (satuan baju)" },
+                    { hanzi: "元", pinyin: "yuán", en: "Yuan (Chinese currency)", id: "Yuan (mata uang Tiongkok)" },
+                    { hanzi: "怎么样", pinyin: "zěnmeyàng", en: "How about / How is it", id: "Bagaimana" },
+                    { hanzi: "贵", pinyin: "guì", en: "Expensive", id: "Mahal" },
+                    { hanzi: "穿", pinyin: "chuān", en: "To wear", id: "Memakai (baju)" },
+                    { hanzi: "女", pinyin: "nǚ", en: "Female / Woman", id: "Perempuan / Wanita" },
+                    { hanzi: "男", pinyin: "nán", en: "Male / Man", id: "Laki-laki / Pria" },
+                    { hanzi: "那儿", pinyin: "nàr", en: "There", id: "Di sana" },
+                    { hanzi: "块", pinyin: "kuài", en: "Yuan (spoken) / Piece", id: "Yuan (lisan) / Potong" }
+                ]
+            },
+            {
+                lesson: 11,
+                title: "第十一课 我读大学呢",
+                words: [
+                    { hanzi: "时候", pinyin: "shíhou", en: "Time / Moment", id: "Waktu / Saat" },
+                    { hanzi: "饭店", pinyin: "fàndiàn", en: "Restaurant / Hotel", id: "Restoran / Hotel" },
+                    { hanzi: "知道", pinyin: "zhīdào", en: "To know", id: "Tahu / Mengetahui" },
+                    { hanzi: "正在", pinyin: "zhèngzài", en: "In the process of", id: "Sedang" },
+                    { hanzi: "找", pinyin: "zhǎo", en: "To look for", id: "Mencari" },
+                    { hanzi: "开车", pinyin: "kāichē", en: "To drive a car", id: "Menyetir mobil" },
+                    { hanzi: "车", pinyin: "chē", en: "Car / Vehicle", id: "Mobil / Kendaraan" },
+                    { hanzi: "在（正在）", pinyin: "zài (zhèngzài)", en: "In the middle of doing", id: "Sedang melakukan" },
+                    { hanzi: "读", pinyin: "dú", en: "To read / To study", id: "Membaca / Menempuh studi" },
+                    { hanzi: "大学", pinyin: "dàxué", en: "University / College", id: "Universitas" },
+                    { hanzi: "大学生", pinyin: "dàxuéshēng", en: "University student", id: "Mahasiswa" },
+                    { hanzi: "学", pinyin: "xué", en: "To learn / To study", id: "Belajar" },
+                    { hanzi: "医", pinyin: "yī", en: "Medicine / Medical", id: "Kedokteran / Medis" },
+                    { hanzi: "弟弟", pinyin: "dìdi", en: "Younger brother", id: "Adik laki-laki" },
+                    { hanzi: "起床", pinyin: "qǐchuáng", en: "To get up (from bed)", id: "Bangun tidur" },
+                    { hanzi: "睡觉", pinyin: "shuìjiào", en: "To sleep", id: "Tidur" },
+                    { hanzi: "睡", pinyin: "shuì", en: "To sleep", id: "Tidur" },
+                    { hanzi: "那里", pinyin: "nàlǐ", en: "There", id: "Di sana" },
+                    { hanzi: "哪里", pinyin: "nǎlǐ", en: "Where", id: "Di mana" },
+                    { hanzi: "昨天", pinyin: "zuótiān", en: "Yesterday", id: "Kemarin" },
+                    { hanzi: "问", pinyin: "wèn", en: "To ask", id: "Bertanya" },
+                    { hanzi: "对", pinyin: "duì", en: "To / Towards", id: "Kepada / Terhadap" },
+                    { hanzi: "说", pinyin: "shuō", en: "To speak / To say", id: "Berbicara / Berkata" },
+                    { hanzi: "要", pinyin: "yào", en: "To want / To need", id: "Mau / Ingin / Harus" },
+                    { hanzi: "小朋友", pinyin: "xiǎopéngyou", en: "Child / Little friend", id: "Anak kecil / Teman kecil" }
+                ]
+            },
+            {
+                lesson: 12,
+                title: "第十二课 昨天下雪了",
+                words: [
+                    { hanzi: "天气", pinyin: "tiānqì", en: "Weather", id: "Cuaca" },
+                    { hanzi: "这里", pinyin: "zhèlǐ", en: "Here", id: "Di sini" },
+                    { hanzi: "天", pinyin: "tiān", en: "Day / Sky", id: "Hari / Langit" },
+                    { hanzi: "下雨", pinyin: "xiàyǔ", en: "To rain", id: "Turun hujan" },
+                    { hanzi: "了", pinyin: "le", en: "Completed action particle", id: "Sudah / Telah (partikel)" },
+                    { hanzi: "雨", pinyin: "yǔ", en: "Rain", id: "Hujan" },
+                    { hanzi: "有点儿", pinyin: "yǒudiǎnr", en: "A little bit", id: "Agak / Sedikit" },
+                    { hanzi: "觉得", pinyin: "juéde", en: "To feel / To think", id: "Merasa" },
+                    { hanzi: "冷", pinyin: "lěng", en: "Cold", id: "Dingin" },
+                    { hanzi: "下", pinyin: "xià", en: "To fall (rain / snow)", id: "Turun (hujan/salju)" },
+                    { hanzi: "雪", pinyin: "xuě", en: "Snow", id: "Salju" },
+                    { hanzi: "来", pinyin: "lái", en: "To come", id: "Datang" },
+                    { hanzi: "公司", pinyin: "gōngsī", en: "Company / Office", id: "Perusahaan / Kantor" },
+                    { hanzi: "生病", pinyin: "shēngbìng", en: "To get sick", id: "Sakit" },
+                    { hanzi: "看病", pinyin: "kànbìng", en: "To see a doctor", id: "Berobat / Periksa ke dokter" },
+                    { hanzi: "病", pinyin: "bìng", en: "Illness / Sick", id: "Penyakit / Sakit" },
+                    { hanzi: "一点儿", pinyin: "yìdiǎnr", en: "A little", id: "Sedikit" },
+                    { hanzi: "药", pinyin: "yào", en: "Medicine", id: "Obat" },
+                    { hanzi: "回", pinyin: "huí", en: "To return / To go back", id: "Kembali / Pulang" },
+                    { hanzi: "再", pinyin: "zài", en: "Again", id: "Lagi" },
+                    { hanzi: "喝", pinyin: "hē", en: "To drink", id: "Minum" },
+                    { hanzi: "热", pinyin: "rè", en: "Hot", id: "Panas" },
+                    { hanzi: "水", pinyin: "shuǐ", en: "Water", id: "Air" }
+                ]
+            },
+            {
+                lesson: 13,
+                title: "第十三课 请给我一杯茶",
+                words: [
+                    { hanzi: "可以", pinyin: "kěyǐ", en: "Can / May", id: "Boleh / Bisa" },
+                    { hanzi: "再", pinyin: "zài", en: "Again", id: "Lagi" },
+                    { hanzi: "问题", pinyin: "wèntí", en: "Question / Problem", id: "Pertanyaan / Masalah" },
+                    { hanzi: "卖", pinyin: "mài", en: "To sell", id: "Menjual" },
+                    { hanzi: "打电话", pinyin: "dǎ diànhuà", en: "To make a phone call", id: "Menelepon" },
+                    { hanzi: "一下", pinyin: "yíxià", en: "A bit / Briefly", id: "Sebentar" },
+                    { hanzi: "服务员", pinyin: "fúwùyuán", en: "Waiter / Attendant", id: "Pelayan" },
+                    { hanzi: "女士", pinyin: "nǚshì", en: "Madam / Lady", id: "Nyonya / Ibu" },
+                    { hanzi: "请", pinyin: "qǐng", en: "Please", id: "Silakan / Tolong" },
+                    { hanzi: "坐", pinyin: "zuò", en: "To sit", id: "Duduk" },
+                    { hanzi: "给", pinyin: "gěi", en: "To give", id: "Memberi" },
+                    { hanzi: "杯", pinyin: "bēi", en: "Cup / Glass (measure word)", id: "Gelas / Cangkir (satuan)" },
+                    { hanzi: "要", pinyin: "yào", en: "To want / To order", id: "Mau / Memesan" },
+                    { hanzi: "早饭", pinyin: "zǎofàn", en: "Breakfast", id: "Sarapan" },
+                    { hanzi: "这个", pinyin: "zhège", en: "This one", id: "Yang ini" },
+                    { hanzi: "面包", pinyin: "miànbāo", en: "Bread", id: "Roti" },
+                    { hanzi: "鸡蛋", pinyin: "jīdàn", en: "Egg", id: "Telur ayam" }
+                ]
+            },
+            {
+                lesson: 14,
+                title: "第十四课 我看了一个电影",
+                words: [
+                    { hanzi: "上", pinyin: "shàng", en: "To get on / To attend", id: "Naik / Masuk" },
+                    { hanzi: "火车", pinyin: "huǒchē", en: "Train", id: "Kereta api" },
+                    { hanzi: "中午", pinyin: "zhōngwǔ", en: "Noon", id: "Tengah hari / Siang" },
+                    { hanzi: "开", pinyin: "kāi", en: "To drive / To open / Depart", id: "Menyetir / Membuka / Berangkat" },
+                    { hanzi: "有些", pinyin: "yǒuxiē", en: "Some", id: "Beberapa / Sebagian" },
+                    { hanzi: "有的", pinyin: "yǒude", en: "Some", id: "Sebagian / Ada yang" },
+                    { hanzi: "了", pinyin: "le", en: "Completed action particle", id: "Sudah (partikel)" },
+                    { hanzi: "些", pinyin: "xiē", en: "Some", id: "Beberapa" },
+                    { hanzi: "都", pinyin: "dōu", en: "All / Both", id: "Semua" },
+                    { hanzi: "听见", pinyin: "tīngjiàn", en: "To hear", id: "Mendengar" },
+                    { hanzi: "不要", pinyin: "búyào", en: "Don't", id: "Jangan" },
+                    { hanzi: "说话", pinyin: "shuōhuà", en: "To speak / To talk", id: "Berbicara" },
+                    { hanzi: "听", pinyin: "tīng", en: "To listen", id: "Mendengarkan" },
+                    { hanzi: "哪些", pinyin: "nǎxiē", en: "Which ones", id: "Yang mana saja" },
+                    { hanzi: "字", pinyin: "zì", en: "Character / Word", id: "Huruf / Aksara" },
+                    { hanzi: "汉语", pinyin: "Hànyǔ", en: "Chinese language", id: "Bahasa Mandarin" },
+                    { hanzi: "汉字", pinyin: "Hànzì", en: "Chinese characters", id: "Aksara Han (Hanzi)" },
+                    { hanzi: "明年", pinyin: "míngnián", en: "Next year", id: "Tahun depan" },
+                    { hanzi: "中学", pinyin: "zhōngxué", en: "Middle school", id: "Sekolah menengah (SMP/SMA)" },
+                    { hanzi: "小学", pinyin: "xiǎoxué", en: "Elementary school", id: "Sekolah dasar (SD)" },
+                    { hanzi: "中学生", pinyin: "zhōngxuéshēng", en: "Middle school student", id: "Pelajar SMP/SMA" },
+                    { hanzi: "小学生", pinyin: "xiǎoxuéshēng", en: "Elementary school student", id: "Siswa SD" },
+                    { hanzi: "上学", pinyin: "shàngxué", en: "To go to school", id: "Bersekolah / Masuk sekolah" },
+                    { hanzi: "他们", pinyin: "tāmen", en: "They / Them (male or mixed)", id: "Mereka" },
+                    { hanzi: "她们", pinyin: "tāmen", en: "They / Them (female)", id: "Mereka (perempuan)" },
+                    { hanzi: "它们", pinyin: "tāmen", en: "They / Them (animals / things)", id: "Mereka (hewan/benda)" },
+                    { hanzi: "晚", pinyin: "wǎn", en: "Late", id: "Terlambat / Malam" }
+                ]
+            },
+            {
+                lesson: 15,
+                title: "第十五课 大兴机场见",
+                words: [
+                    { hanzi: "爱", pinyin: "ài", en: "To love", id: "Cinta / Sayang" },
+                    { hanzi: "哪个", pinyin: "nǎge", en: "Which one", id: "Yang mana" },
+                    { hanzi: "去年", pinyin: "qùnián", en: "Last year", id: "Tahun lalu" },
+                    { hanzi: "男朋友", pinyin: "nánpéngyou", en: "Boyfriend", id: "Pacar laki-laki" },
+                    { hanzi: "几", pinyin: "jǐ", en: "How many / Several", id: "Berapa / Beberapa" },
+                    { hanzi: "年", pinyin: "nián", en: "Year", id: "Tahun" },
+                    { hanzi: "好玩儿", pinyin: "hǎowánr", en: "Fun / Interesting", id: "Menyenangkan / Seru" },
+                    { hanzi: "北京", pinyin: "Běijīng", en: "Beijing", id: "Beijing" },
+                    { hanzi: "西安", pinyin: "Xī'ān", en: "Xi'an", id: "Xi'an" },
+                    { hanzi: "飞机", pinyin: "fēijī", en: "Airplane", id: "Pesawat terbang" },
+                    { hanzi: "要", pinyin: "yào", en: "To need / To take (time)", id: "Membutuhkan / Mau" },
+                    { hanzi: "小时", pinyin: "xiǎoshí", en: "Hour", id: "Jam (durasi)" },
+                    { hanzi: "家人", pinyin: "jiārén", en: "Family members", id: "Anggota keluarga" },
+                    { hanzi: "时间", pinyin: "shíjiān", en: "Time", id: "Waktu" },
+                    { hanzi: "机场", pinyin: "jīchǎng", en: "Airport", id: "Bandara" },
+                    { hanzi: "接", pinyin: "jiē", en: "To pick up / To meet", id: "Menjemput" },
+                    { hanzi: "住", pinyin: "zhù", en: "To live / To stay", id: "Tinggal / Menginap" },
+                    { hanzi: "早", pinyin: "zǎo", en: "Early / Morning", id: "Awal / Pagi" },
+                    { hanzi: "那", pinyin: "nà", en: "Then / That", id: "Kalau begitu / Itu" },
+                    { hanzi: "大兴机场", pinyin: "Dàxīng Jīchǎng", en: "Daxing Airport", id: "Bandara Daxing" }
+                ]
+            }
+        ];
+
+        // Palet warna cerah dan terang untuk kartu kosakata anak SD
+        const CARD_THEMES = [
+            { border: "border-sky-300", badge: "bg-sky-100 text-sky-700", accent: "from-sky-400 to-blue-500", backBg: "bg-sky-50" },
+            { border: "border-amber-300", badge: "bg-amber-100 text-amber-800", accent: "from-amber-400 to-orange-500", backBg: "bg-amber-50" },
+            { border: "border-emerald-300", badge: "bg-emerald-100 text-emerald-700", accent: "from-emerald-400 to-teal-500", backBg: "bg-emerald-50" },
+            { border: "border-pink-300", badge: "bg-pink-100 text-pink-700", accent: "from-pink-400 to-rose-500", backBg: "bg-pink-50" },
+            { border: "border-purple-300", badge: "bg-purple-100 text-purple-700", accent: "from-purple-400 to-indigo-500", backBg: "bg-purple-50" },
+            { border: "border-orange-300", badge: "bg-orange-100 text-orange-700", accent: "from-orange-400 to-red-400", backBg: "bg-orange-50" }
+        ];
+
+        // State Aplikasi
+        let shuffledData = [];
+        let activeLessonIndex = 0;
+        let currentMode = "flashcard"; // 'flashcard' | 'quiz'
+        let searchQuery = "";
+        let stars = 0;
+        let masteredSet = new Set(); // Menyimpan ID unik kata yang sudah dihafal
+        let flippedSet = new Set();   // Menyimpan ID kartu yang sedang terbuka
+        let quizState = {
+            questions: [],
+            currentIndex: 0,
+            score: 0,
+            streak: 0,
+            answered: false,
+            selectedIdx: -1
+        };
+
+        /**
+         * Algoritma Fisher-Yates untuk mengacak array setiap kali halaman dimuat ulang
+         */
+        function shuffleArray(array) {
+            const arr = [...array];
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        /**
+         * Menyiapkan data kosakata teracak dengan ID unik pada setiap kata
+         */
+        function buildRandomizedData() {
+            shuffledData = RAW_HSK1_DATA.map((chapter) => {
+                const wordsWithId = chapter.words.map((w, wIdx) => ({
+                    ...w,
+                    uid: `L${chapter.lesson}-W${wIdx}`,
+                    lesson: chapter.lesson,
+                    lessonTitle: chapter.title
+                }));
+                return {
+                    ...chapter,
+                    words: shuffleArray(wordsWithId)
+                };
+            });
+        }
+
+        /**
+         * Efek Suara Ceria Menggunakan Web Audio API (Tanpa URL Eksternal)
+         */
+        let audioCtx = null;
+        function playSoundEffect(type) {
+            try {
+                if (!audioCtx) {
+                    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                }
+                if (audioCtx.state === 'suspended') {
+                    audioCtx.resume();
+                }
+                const now = audioCtx.currentTime;
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                if (type === 'flip') {
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(420, now);
+                    osc.frequency.exponentialRampToValueAtTime(680, now + 0.12);
+                    gain.gain.setValueAtTime(0.12, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.13);
+                    osc.start(now);
+                    osc.stop(now + 0.14);
+                } else if (type === 'star') {
+                    const notes = [523.25, 659.25, 783.99, 1046.5];
+                    notes.forEach((freq, idx) => {
+                        const o = audioCtx.createOscillator();
+                        const g = audioCtx.createGain();
+                        o.type = 'triangle';
+                        o.connect(g);
+                        g.connect(audioCtx.destination);
+                        o.frequency.setValueAtTime(freq, now + idx * 0.07);
+                        g.gain.setValueAtTime(0.15, now + idx * 0.07);
+                        g.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.07 + 0.22);
+                        o.start(now + idx * 0.07);
+                        o.stop(now + idx * 0.07 + 0.24);
+                    });
+                } else if (type === 'wrong') {
+                    osc.type = 'sawtooth';
+                    osc.frequency.setValueAtTime(220, now);
+                    osc.frequency.linearRampToValueAtTime(160, now + 0.22);
+                    gain.gain.setValueAtTime(0.1, now);
+                    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.24);
+                    osc.start(now);
+                    osc.stop(now + 0.25);
+                }
+            } catch (e) {
+                // Abaikan jika browser membatasi audio otomatis
+            }
+        }
+
+        /**
+         * Text-to-Speech Bahasa Mandarin untuk ikon Speaker
+         */
+        let zhVoice = null;
+        function loadChineseVoice() {
+            if (!('speechSynthesis' in window)) return;
+            const voices = window.speechSynthesis.getVoices();
+            zhVoice = voices.find(v => v.lang === 'zh-CN') ||
+                      voices.find(v => v.lang.startsWith('zh')) ||
+                      null;
+        }
+        if ('speechSynthesis' in window) {
+            loadChineseVoice();
+            window.speechSynthesis.onvoiceschanged = loadChineseVoice;
+        }
+
+        function speakHanzi(text, btnElement = null, event = null) {
+            if (event) {
+                event.stopPropagation();
+            }
+            // Bersihkan teks dalam kurung agar pelafalan suara alami
+            const cleanText = text.replace(/（.*?）/g, '').trim();
+
+            if (btnElement) {
+                document.querySelectorAll('.speaking-active').forEach(el => el.classList.remove('speaking-active'));
+                btnElement.classList.add('speaking-active');
+            }
+
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const utterance = new SpeechSynthesisUtterance(cleanText);
+                utterance.lang = 'zh-CN';
+                if (zhVoice) utterance.voice = zhVoice;
+                utterance.rate = 0.85; // Kecepatan sedikit pelan agar jelas untuk anak SD
+                utterance.pitch = 1.05;
+
+                utterance.onend = () => {
+                    if (btnElement) btnElement.classList.remove('speaking-active');
+                };
+                utterance.onerror = () => {
+                    if (btnElement) btnElement.classList.remove('speaking-active');
+                };
+
+                window.speechSynthesis.speak(utterance);
+
+                // Fallback timer jika event onend tidak terpanggil pada perangkat tertentu
+                setTimeout(() => {
+                    if (btnElement) btnElement.classList.remove('speaking-active');
+                }, 1800);
+            }
+        }
+
+        function speakCurrentTitle() {
+            const btn = document.getElementById('titleSpeakerBtn');
+            const titleText = document.getElementById('activeLessonTitle').textContent;
+            speakHanzi(titleText, btn);
+        }
+
+        /**
+         * Animasi Partikel Bintang Melayang saat Anak Mendapat Poin
+         */
+        function spawnStarParticles(x, y, count = 5) {
+            const emojis = ['⭐', '🌟', '✨', '🎉'];
+            for (let i = 0; i < count; i++) {
+                const el = document.createElement('div');
+                el.className = 'star-particle text-2xl';
+                el.textContent = emojis[i % emojis.length];
+                const offsetX = (Math.random() - 0.5) * 90;
+                const offsetY = (Math.random() - 0.5) * 30;
+                el.style.left = `${x + offsetX}px`;
+                el.style.top = `${y + offsetY}px`;
+                document.body.appendChild(el);
+                setTimeout(() => el.remove(), 1000);
+            }
+        }
+
+        /**
+         * Pembaruan Papan Skor Atas
+         */
+        function updateHUD() {
+            const totalWords = shuffledData.reduce((sum, ch) => sum + ch.words.length, 0);
+            document.getElementById('starCount').textContent = stars;
+            document.getElementById('masteredCount').textContent = `${masteredSet.size}/${totalWords}`;
+        }
+
+        /**
+         * Render Daftar Isi Bab di Bagian Sebelah Kiri
+         */
+        function renderSidebar() {
+            const container = document.getElementById('chapterList');
+            container.innerHTML = '';
+
+            shuffledData.forEach((chapter, index) => {
+                const isSelected = !searchQuery && activeLessonIndex === index;
+                const masteredInChapter = chapter.words.filter(w => masteredSet.has(w.uid)).length;
+                const totalInChapter = chapter.words.length;
+                const pct = Math.round((masteredInChapter / totalInChapter) * 100);
+
+                const btn = document.createElement('button');
+                btn.type = 'button';
+                btn.onclick = () => selectChapter(index);
+                btn.className = `w-full text-left p-3 rounded-2xl border-2 transition-all duration-150 cursor-pointer flex flex-col gap-1.5 ${
+                    isSelected
+                        ? 'bg-gradient-to-r from-amber-300 to-yellow-200 border-amber-500 shadow-[0_3px_0_#D97706] scale-[1.01]'
+                        : 'bg-slate-50 hover:bg-sky-50 border-slate-200 hover:border-sky-300'
+                }`;
+
+                btn.innerHTML = `
+                    <div class="flex items-center justify-between gap-2">
+                        <span class="font-display font-extrabold text-xs px-2.5 py-0.5 rounded-full ${
+                            isSelected ? 'bg-indigo-600 text-white' : 'bg-sky-100 text-sky-700'
+                        }">
+                            Bab ${chapter.lesson}
+                        </span>
+                        <span class="text-xs font-extrabold ${masteredInChapter === totalInChapter ? 'text-emerald-600' : 'text-slate-400'}">
+                            ${masteredInChapter === totalInChapter ? '👑 Selesai!' : `${masteredInChapter}/${totalInChapter} ⭐`}
+                        </span>
+                    </div>
+                    <div class="hanzi-font text-base sm:text-lg font-bold ${isSelected ? 'text-indigo-950' : 'text-slate-800'} leading-snug">
+                        ${chapter.title}
+                    </div>
+                    <div class="w-full h-2 bg-white/80 rounded-full overflow-hidden border border-slate-200">
+                        <div class="h-full bg-gradient-to-r from-emerald-400 to-teal-500 transition-all duration-300" style="width: ${pct}%"></div>
+                    </div>
+                `;
+                container.appendChild(btn);
+            });
+        }
+
+        /**
+         * Memilih Bab dari Daftar Isi Sebelah Kiri
+         */
+        function selectChapter(index) {
+            activeLessonIndex = index;
+            searchQuery = "";
+            document.getElementById('searchInput').value = "";
+            document.getElementById('clearSearchBtn').classList.add('hidden');
+            flippedSet.clear();
+            playSoundEffect('flip');
+            if (currentMode === 'quiz') {
+                initQuiz();
+            }
+            renderSidebar();
+            renderRightPanel();
+
+            // Pada layar HP, scroll halus ke bagian kanan agar anak langsung melihat kosakata
+            if (window.innerWidth < 768) {
+                document.getElementById('lessonBanner').scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        /**
+         * Normalisasi Pinyin tanpa tanda nada untuk memudahkan pencarian anak
+         */
+        function normalizePinyin(str) {
+            return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+        }
+
+        /**
+         * Menangani Pencarian Hanzi / Pinyin / Arti Level HSK 1 di Bagian Atas
+         */
+        function handleSearch(e) {
+            if (e) e.preventDefault();
+            const rawVal = document.getElementById('searchInput').value.trim();
+            searchQuery = rawVal;
+
+            const clearBtn = document.getElementById('clearSearchBtn');
+            if (searchQuery) {
+                clearBtn.classList.remove('hidden');
+            } else {
+                clearBtn.classList.add('hidden');
+            }
+
+            flippedSet.clear();
+            if (currentMode === 'quiz') {
+                initQuiz();
+            }
+            renderSidebar();
+            renderRightPanel();
+        }
+
+        function clearSearch() {
+            searchQuery = "";
+            document.getElementById('searchInput').value = "";
+            document.getElementById('clearSearchBtn').classList.add('hidden');
+            flippedSet.clear();
+            if (currentMode === 'quiz') {
+                initQuiz();
+            }
+            renderSidebar();
+            renderRightPanel();
+        }
+
+        /**
+         * Mendapatkan Daftar Kata Aktif (Berdasarkan Bab Terpilih atau Hasil Pencarian HSK 1)
+         */
+        function getActiveWords() {
+            if (!searchQuery) {
+                return shuffledData[activeLessonIndex].words;
+            }
+            const qLower = searchQuery.toLowerCase();
+            const qNorm = normalizePinyin(searchQuery);
+            const results = [];
+
+            shuffledData.forEach(chapter => {
+                chapter.words.forEach(word => {
+                    const matchHanzi = word.hanzi.includes(searchQuery);
+                    const matchPinyin = word.pinyin.toLowerCase().includes(qLower) || normalizePinyin(word.pinyin).includes(qNorm);
+                    const matchId = word.id.toLowerCase().includes(qLower);
+                    const matchEn = word.en.toLowerCase().includes(qLower);
+
+                    if (matchHanzi || matchPinyin || matchId || matchEn) {
+                        results.push(word);
+                    }
+                });
+            });
+            return results;
+        }
+
+        /**
+         * Mengganti Mode Tampilan (Kartu Kosakata vs Kuis Seru)
+         */
+        function switchMode(mode) {
+            currentMode = mode;
+            const fcBtn = document.getElementById('modeFlashcardBtn');
+            const qzBtn = document.getElementById('modeQuizBtn');
+
+            if (mode === 'flashcard') {
+                fcBtn.className = "btn-pop px-3.5 py-2 rounded-xl font-display font-bold text-xs sm:text-sm flex items-center gap-1.5 bg-indigo-600 text-white shadow-sm cursor-pointer";
+                qzBtn.className = "btn-pop px-3.5 py-2 rounded-xl font-display font-bold text-xs sm:text-sm flex items-center gap-1.5 text-slate-600 hover:bg-amber-100 cursor-pointer";
+            } else {
+                qzBtn.className = "btn-pop px-3.5 py-2 rounded-xl font-display font-bold text-xs sm:text-sm flex items-center gap-1.5 bg-emerald-600 text-white shadow-sm cursor-pointer";
+                fcBtn.className = "btn-pop px-3.5 py-2 rounded-xl font-display font-bold text-xs sm:text-sm flex items-center gap-1.5 text-slate-600 hover:bg-amber-100 cursor-pointer";
+                initQuiz();
+            }
+
+            renderRightPanel();
+        }
+
+        /**
+         * Render Panel Sebelah Kanan (Judul Bab + Kartu Kosakata / Kuis)
+         */
+        function renderRightPanel() {
+            const words = getActiveWords();
+            const activeBadge = document.getElementById('activeBadge');
+            const activeWordTotal = document.getElementById('activeWordTotal');
+            const activeLessonTitle = document.getElementById('activeLessonTitle');
+            const titleSpeakerBtn = document.getElementById('titleSpeakerBtn');
+
+            if (searchQuery) {
+                activeBadge.textContent = "🔍 Hasil Pencarian HSK 1";
+                activeLessonTitle.textContent = `Kata kunci: "${searchQuery}"`;
+                activeWordTotal.textContent = `${words.length} Ditemukan`;
+                titleSpeakerBtn.classList.add('hidden');
+            } else {
+                const chapter = shuffledData[activeLessonIndex];
+                activeBadge.textContent = `Bab ${chapter.lesson} dari 15`;
+                activeLessonTitle.textContent = chapter.title;
+                activeWordTotal.textContent = `${words.length} Kosakata`;
+                titleSpeakerBtn.classList.remove('hidden');
+            }
+
+            const fcContainer = document.getElementById('flashcardContainer');
+            const qzContainer = document.getElementById('quizContainer');
+
+            if (currentMode === 'flashcard') {
+                fcContainer.classList.remove('hidden');
+                qzContainer.classList.add('hidden');
+                renderFlashcards(words);
+            } else {
+                fcContainer.classList.add('hidden');
+                qzContainer.classList.remove('hidden');
+                renderQuiz();
+            }
+        }
+
+        /**
+         * Render Kartu Kosakata Besar & Jelas (Bisa Dibalik untuk Pinyin & Arti 2 Bahasa)
+         */
+        function renderFlashcards(words) {
+            const container = document.getElementById('flashcardContainer');
+            container.innerHTML = '';
+
+            if (words.length === 0) {
+                container.innerHTML = `
+                    <div class="col-span-full bg-white rounded-3xl p-8 text-center border-4 border-amber-200 shadow-lg">
+                        <div class="text-5xl mb-3">🔎</div>
+                        <h3 class="font-display text-xl font-bold text-slate-700 mb-1">Kosakata HSK 1 Tidak Ditemukan</h3>
+                        <p class="text-slate-500 font-semibold mb-4">Coba cari Hanzi, Pinyin, atau arti kata HSK 1 lainnya ya!</p>
+                        <button type="button" onclick="clearSearch()" class="btn-pop bg-amber-400 text-amber-950 font-display font-bold px-5 py-2.5 rounded-2xl shadow-[0_3px_0_#B45309] cursor-pointer">
+                            Tampilkan Semua Kosakata
+                        </button>
+                    </div>
+                `;
+                return;
+            }
+
+            words.forEach((word, idx) => {
+                const theme = CARD_THEMES[idx % CARD_THEMES.length];
+                const isFlipped = flippedSet.has(word.uid);
+                const isMastered = masteredSet.has(word.uid);
+
+                // Ukuran font Hanzi besar & jelas (disesuaikan agar tidak terpotong bila 3-4 karakter)
+                const hanziSizeClass = word.hanzi.length >= 4
+                    ? 'text-4xl sm:text-5xl'
+                    : word.hanzi.length === 3
+                        ? 'text-5xl sm:text-6xl'
+                        : 'text-6xl sm:text-7xl';
+
+                const escapedHanzi = word.hanzi.replace(/'/g, "\\'");
+
+                const cardWrapper = document.createElement('div');
+                cardWrapper.className = `flip-card h-72 sm:h-80 ${isFlipped ? 'flipped' : ''}`;
+                cardWrapper.onclick = () => toggleCardFlip(word.uid, cardWrapper);
+
+                cardWrapper.innerHTML = `
+                    <div class="flip-card-inner">
+                        <!-- SISI DEPAN KARTU: HANZI BESAR & JELAS + SPEAKER -->
+                        <div class="flip-front bg-white border-4 ${isMastered ? 'border-amber-400 ring-4 ring-amber-200/60' : theme.border} shadow-lg flex flex-col justify-between p-4 sm:p-5">
+                            <!-- Baris Atas Kartu -->
+                            <div class="flex items-center justify-between gap-2">
+                                <span class="text-xs font-extrabold px-2.5 py-1 rounded-full ${theme.badge}">
+                                    ${searchQuery ? `Bab ${word.lesson}` : `#${idx + 1}`}
+                                </span>
+
+                                <div class="flex items-center gap-1.5">
+                                    ${isMastered ? '<span class="bg-amber-100 text-amber-700 text-xs font-extrabold px-2 py-0.5 rounded-full border border-amber-300">⭐ Hafal</span>' : ''}
+                                    <button 
+                                        type="button"
+                                        onclick="speakHanzi('${escapedHanzi}', this, event)"
+                                        title="Dengarkan Pelafalan"
+                                        class="btn-pop w-11 h-11 rounded-2xl bg-gradient-to-br ${theme.accent} text-white flex items-center justify-center text-xl shadow-md cursor-pointer"
+                                    >
+                                        🔊
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Tengah: Hanzi Sangat Besar & Jelas -->
+                            <div class="flex-1 flex flex-col items-center justify-center my-1">
+                                <div class="hanzi-font ${hanziSizeClass} text-slate-900 tracking-wider text-center drop-shadow-sm">
+                                    ${word.hanzi}
+                                </div>
+                            </div>
+
+                            <!-- Bawah: Petunjuk Klik Balik Kartu -->
+                            <div class="text-center">
+                                <span class="inline-flex items-center gap-1.5 text-xs font-bold text-slate-500 bg-slate-100 px-3 py-1.5 rounded-full">
+                                    <span>👆</span>
+                                    <span>Klik untuk Pinyin &amp; Arti</span>
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- SISI BELAKANG KARTU: PINYIN + ARTI INDONESIA & INGGRIS (2 BAHASA) -->
+                        <div class="flip-back ${theme.backBg} border-4 ${theme.border} shadow-xl flex flex-col justify-between p-4 sm:p-5">
+                            <!-- Header Belakang: Hanzi + Speaker -->
+                            <div class="flex items-center justify-between border-b-2 border-white/80 pb-2">
+                                <div class="flex items-center gap-2">
+                                    <span class="hanzi-font text-2xl sm:text-3xl font-bold text-slate-900">${word.hanzi}</span>
+                                    <span class="text-[11px] font-bold text-slate-400">(Bab ${word.lesson})</span>
+                                </div>
+                                <button 
+                                    type="button"
+                                    onclick="speakHanzi('${escapedHanzi}', this, event)"
+                                    title="Dengarkan Pelafalan"
+                                    class="btn-pop w-10 h-10 rounded-xl bg-white text-indigo-600 border-2 border-indigo-200 flex items-center justify-center text-lg shadow-sm cursor-pointer"
+                                >
+                                    🔊
+                                </button>
+                            </div>
+
+                            <!-- Isi Tengah: Pinyin & Terjemahan 2 Bahasa -->
+                            <div class="flex-1 flex flex-col justify-center items-center text-center space-y-2 my-1">
+                                <!-- Pinyin -->
+                                <div class="bg-white px-4 py-1.5 rounded-2xl shadow-sm border-2 border-indigo-200">
+                                    <div class="text-[10px] uppercase tracking-wider font-extrabold text-indigo-400">Pinyin</div>
+                                    <div class="font-display text-xl sm:text-2xl font-bold text-indigo-700">
+                                        ${word.pinyin}
+                                    </div>
+                                </div>
+
+                                <!-- Arti Bahasa Indonesia -->
+                                <div class="w-full bg-white/90 px-3 py-1.5 rounded-xl border border-emerald-200">
+                                    <div class="text-xs sm:text-sm font-extrabold text-emerald-700">
+                                        🇮🇩 ${word.id}
+                                    </div>
+                                </div>
+
+                                <!-- Arti Bahasa Inggris -->
+                                <div class="w-full bg-white/90 px-3 py-1.5 rounded-xl border border-sky-200">
+                                    <div class="text-xs sm:text-sm font-bold text-sky-700">
+                                        🇬🇧 ${word.en}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Tombol Klaim Bintang Hafal -->
+                            <div class="pt-1 flex items-center justify-between gap-2">
+                                <button 
+                                    type="button"
+                                    onclick="markAsMastered('${word.uid}', event)"
+                                    class="btn-pop flex-1 py-2 px-3 rounded-xl font-display font-bold text-xs sm:text-sm flex items-center justify-center gap-1.5 cursor-pointer ${
+                                        isMastered
+                                            ? 'bg-emerald-500 text-white shadow-[0_3px_0_#047857]'
+                                            : 'bg-amber-400 hover:bg-amber-300 text-amber-950 shadow-[0_3px_0_#B45309]'
+                                    }"
+                                >
+                                    <span>${isMastered ? '✅ Sudah Hafal!' : '⭐ Saya Hafal (+5)'}</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                container.appendChild(cardWrapper);
+            });
+        }
+
+        /**
+         * Membalik Kartu Kosakata
+         */
+        function toggleCardFlip(uid, cardEl) {
+            playSoundEffect('flip');
+            if (flippedSet.has(uid)) {
+                flippedSet.delete(uid);
+                cardEl.classList.remove('flipped');
+            } else {
+                flippedSet.add(uid);
+                cardEl.classList.add('flipped');
+            }
+        }
+
+        /**
+         * Menandai Kosakata Sudah Dihafal & Memberikan Bonus Bintang
+         */
+        function markAsMastered(uid, event) {
+            if (event) event.stopPropagation();
+
+            if (!masteredSet.has(uid)) {
+                masteredSet.add(uid);
+                stars += 5;
+                playSoundEffect('star');
+                if (event && event.clientX) {
+                    spawnStarParticles(event.clientX, event.clientY, 6);
+                }
+                updateHUD();
+                renderSidebar();
+                renderRightPanel();
+            } else {
+                playSoundEffect('star');
+                if (event && event.clientX) {
+                    spawnStarParticles(event.clientX, event.clientY, 3);
+                }
+            }
+        }
+
+        /**
+         * MINI GAME KUIS TEBAK CEPAT HSK 1
+         */
+        function initQuiz() {
+            const activeWords = getActiveWords();
+            const allWordsPool = shuffledData.flatMap(ch => ch.words);
+
+            if (activeWords.length === 0) {
+                quizState.questions = [];
+                return;
+            }
+
+            // Ambil maksimal 10 soal teracak dari bab aktif / hasil pencarian
+            const selectedTargets = shuffleArray(activeWords).slice(0, 10);
+
+            const questions = selectedTargets.map((targetWord, idx) => {
+                // Pilih 3 pengecoh yang berbeda Hanzi & artinya
+                const distractors = shuffleArray(
+                    allWordsPool.filter(w => w.hanzi !== targetWord.hanzi && w.id !== targetWord.id)
+                ).slice(0, 3);
+
+                const options = shuffleArray([targetWord, ...distractors]);
+                // Bergantian antara mode tebak arti dari Hanzi & tebak Hanzi dari suara/arti
+                const qType = idx % 2 === 0 ? 'hanzi-to-meaning' : 'meaning-to-hanzi';
+
+                return {
+                    target: targetWord,
+                    options,
+                    type: qType
+                };
+            });
+
+            quizState = {
+                questions,
+                currentIndex: 0,
+                score: 0,
+                streak: 0,
+                answered: false,
+                selectedIdx: -1
+            };
+        }
+
+        function renderQuiz() {
+            const container = document.getElementById('quizContainer');
+
+            if (quizState.questions.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-6">
+                        <div class="text-5xl mb-3">🎯</div>
+                        <h3 class="font-display text-xl font-bold text-slate-700 mb-2">Belum Ada Soal Kuis</h3>
+                        <p class="text-slate-500 font-semibold mb-4">Pilih salah satu bab di sebelah kiri untuk mulai bermain kuis!</p>
+                        <button type="button" onclick="clearSearch()" class="btn-pop bg-amber-400 text-amber-950 font-display font-bold px-5 py-2.5 rounded-2xl shadow-[0_3px_0_#B45309] cursor-pointer">
+                            Kembali ke Bab 1
+                        </button>
+                    </div>
+                `;
+                return;
+            }
+
+            // Tampilan Selesai Kuis
+            if (quizState.currentIndex >= quizState.questions.length) {
+                const totalQ = quizState.questions.length;
+                const pct = Math.round((quizState.score / totalQ) * 100);
+                const trophy = pct >= 80 ? '🏆' : pct >= 50 ? '🌟' : '🎈';
+
+                container.innerHTML = `
+                    <div class="text-center py-4 sm:py-6 space-y-4">
+                        <div class="text-6xl sm:text-7xl animate-bounce">${trophy}</div>
+                        <h2 class="font-display text-2xl sm:text-3xl font-extrabold text-indigo-900">
+                            Kuis Selesai! Hebat Sekali!
+                        </h2>
+                        <p class="text-slate-600 font-bold text-base sm:text-lg">
+                            Kamu menjawab benar <span class="text-emerald-600 font-extrabold">${quizState.score}</span> dari <span class="text-indigo-600 font-extrabold">${totalQ}</span> soal!
+                        </p>
+                        <div class="inline-flex items-center gap-2 bg-amber-100 border-2 border-amber-300 px-5 py-2.5 rounded-2xl text-amber-900 font-display font-bold text-lg">
+                            <span>⭐ Total Bintangmu Sekarang:</span>
+                            <span class="text-2xl text-amber-600">${stars}</span>
+                        </div>
+                        <div class="pt-3 flex flex-wrap items-center justify-center gap-3">
+                            <button type="button" onclick="restartQuiz()" class="btn-pop bg-gradient-to-r from-emerald-400 to-teal-500 text-white font-display font-bold px-6 py-3 rounded-2xl shadow-[0_4px_0_#047857] text-base sm:text-lg cursor-pointer">
+                                Main Kuis Lagi 🔄
+                            </button>
+                            <button type="button" onclick="switchMode('flashcard')" class="btn-pop bg-indigo-100 hover:bg-indigo-200 text-indigo-800 font-display font-bold px-6 py-3 rounded-2xl text-base sm:text-lg cursor-pointer">
+                                Lihat Kartu Kosakata 🃏
+                            </button>
+                        </div>
+                    </div>
+                `;
+                return;
+            }
+
+            const q = quizState.questions[quizState.currentIndex];
+            const totalQ = quizState.questions.length;
+            const progressPct = Math.round(((quizState.currentIndex) / totalQ) * 100);
+            const escapedHanzi = q.target.hanzi.replace(/'/g, "\\'");
+
+            let promptHTML = '';
+            if (q.type === 'hanzi-to-meaning') {
+                promptHTML = `
+                    <div class="text-xs sm:text-sm font-extrabold uppercase tracking-wider text-indigo-500 mb-2">
+                        Pilih Arti yang Tepat untuk Hanzi Ini:
+                    </div>
+                    <div class="flex items-center justify-center gap-4 my-3">
+                        <div class="hanzi-font text-6xl sm:text-7xl text-slate-900 drop-shadow-sm">
+                            ${q.target.hanzi}
+                        </div>
+                        <button type="button" onclick="speakHanzi('${escapedHanzi}', this, event)" title="Dengarkan Suara" class="btn-pop w-12 h-12 rounded-2xl bg-sky-400 hover:bg-sky-500 text-white flex items-center justify-center text-2xl shadow-[0_4px_0_#0284C7] cursor-pointer">
+                            🔊
+                        </button>
+                    </div>
+                    ${quizState.answered ? `
+                        <div class="inline-block bg-indigo-50 border border-indigo-200 text-indigo-700 font-display font-bold px-4 py-1 rounded-full text-base">
+                            Pinyin: ${q.target.pinyin}
+                        </div>
+                    ` : ''}
+                `;
+            } else {
+                promptHTML = `
+                    <div class="text-xs sm:text-sm font-extrabold uppercase tracking-wider text-emerald-600 mb-2">
+                        Pilih Hanzi yang Sesuai dengan Arti &amp; Suara Ini:
+                    </div>
+                    <div class="bg-amber-50 border-2 border-amber-200 rounded-2xl p-4 max-w-md mx-auto my-2 space-y-1">
+                        <div class="text-lg sm:text-xl font-extrabold text-emerald-700">🇮🇩 ${q.target.id}</div>
+                        <div class="text-sm sm:text-base font-bold text-sky-700">🇬🇧 ${q.target.en}</div>
+                    </div>
+                    <div class="pt-1">
+                        <button type="button" onclick="speakHanzi('${escapedHanzi}', this, event)" class="btn-pop inline-flex items-center gap-2 bg-sky-400 hover:bg-sky-500 text-white font-display font-bold px-4 py-2 rounded-2xl shadow-[0_3px_0_#0284C7] text-sm cursor-pointer">
+                            <span>🔊</span>
+                            <span>Dengarkan Suara Petunjuk</span>
+                        </button>
+                    </div>
+                `;
+            }
+
+            const optionsHTML = q.options.map((opt, idx) => {
+                const isCorrect = opt.hanzi === q.target.hanzi;
+                const isSelected = quizState.selectedIdx === idx;
+
+                let btnStyle = "bg-slate-50 hover:bg-sky-50 border-slate-200 hover:border-sky-400 text-slate-800";
+                if (quizState.answered) {
+                    if (isCorrect) {
+                        btnStyle = "bg-emerald-100 border-emerald-500 text-emerald-950 ring-4 ring-emerald-200";
+                    } else if (isSelected && !isCorrect) {
+                        btnStyle = "bg-rose-100 border-rose-500 text-rose-900 shake-anim";
+                    } else {
+                        btnStyle = "bg-slate-50 border-slate-200 opacity-60 text-slate-500";
+                    }
+                }
+
+                if (q.type === 'hanzi-to-meaning') {
+                    return `
+                        <button type="button" ${quizState.answered ? 'disabled' : ''} onclick="submitQuizAnswer(${idx}, event)" class="btn-pop p-4 rounded-2xl border-3 border-2 text-left transition-all cursor-pointer flex flex-col justify-center gap-1 ${btnStyle}">
+                            <div class="font-extrabold text-sm sm:text-base text-emerald-800">🇮🇩 ${opt.id}</div>
+                            <div class="font-bold text-xs sm:text-sm text-sky-700">🇬🇧 ${opt.en}</div>
+                            ${quizState.answered ? `<div class="text-xs font-bold text-indigo-600 mt-0.5">(${opt.pinyin})</div>` : ''}
+                        </button>
+                    `;
+                } else {
+                    return `
+                        <button type="button" ${quizState.answered ? 'disabled' : ''} onclick="submitQuizAnswer(${idx}, event)" class="btn-pop p-4 rounded-2xl border-2 text-center transition-all cursor-pointer flex flex-col items-center justify-center gap-1 ${btnStyle}">
+                            <div class="hanzi-font text-4xl sm:text-5xl text-slate-900">${opt.hanzi}</div>
+                            ${quizState.answered ? `<div class="font-display text-sm font-bold text-indigo-600">${opt.pinyin}</div>` : ''}
+                        </button>
+                    `;
+                }
+            }).join('');
+
+            container.innerHTML = `
+                <!-- Header Progres Kuis -->
+                <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+                    <span class="bg-indigo-100 text-indigo-800 font-display font-bold text-xs sm:text-sm px-3.5 py-1.5 rounded-full">
+                        Soal ${quizState.currentIndex + 1} dari ${totalQ}
+                    </span>
+                    <div class="flex items-center gap-2">
+                        ${quizState.streak >= 2 ? `<span class="bg-orange-100 text-orange-700 font-extrabold text-xs px-3 py-1 rounded-full">🔥 Kombo x${quizState.streak}</span>` : ''}
+                        <span class="bg-emerald-100 text-emerald-800 font-display font-bold text-xs sm:text-sm px-3.5 py-1.5 rounded-full">
+                            Benar: ${quizState.score}
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Bar Progres -->
+                <div class="w-full h-3 bg-slate-100 rounded-full overflow-hidden mb-6 border border-slate-200">
+                    <div class="h-full bg-gradient-to-r from-amber-400 via-orange-400 to-emerald-400 transition-all duration-300" style="width: ${progressPct}%"></div>
+                </div>
+
+                <!-- Pertanyaan -->
+                <div class="text-center mb-6">
+                    ${promptHTML}
+                </div>
+
+                <!-- Pilihan Jawaban -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 max-w-2xl mx-auto">
+                    ${optionsHTML}
+                </div>
+
+                <!-- Tombol Soal Berikutnya -->
+                ${quizState.answered ? `
+                    <div class="mt-6 text-center">
+                        <button type="button" onclick="nextQuizQuestion()" class="btn-pop bg-gradient-to-r from-indigo-500 to-purple-600 text-white font-display font-bold px-7 py-3 rounded-2xl shadow-[0_4px_0_#4338CA] text-base sm:text-lg cursor-pointer">
+                            ${quizState.currentIndex + 1 < totalQ ? 'Soal Berikutnya ➡️' : 'Lihat Hasil Kuis 🏆'}
+                        </button>
+                    </div>
+                ` : ''}
+            `;
+        }
+
+        function submitQuizAnswer(idx, event) {
+            if (quizState.answered) return;
+            quizState.answered = true;
+            quizState.selectedIdx = idx;
+
+            const q = quizState.questions[quizState.currentIndex];
+            const chosen = q.options[idx];
+            const isCorrect = chosen.hanzi === q.target.hanzi;
+
+            if (isCorrect) {
+                quizState.score += 1;
+                quizState.streak += 1;
+                const bonusStars = quizState.streak >= 3 ? 15 : 10;
+                stars += bonusStars;
+                masteredSet.add(q.target.uid);
+                playSoundEffect('star');
+                if (event && event.clientX) {
+                    spawnStarParticles(event.clientX, event.clientY, 7);
+                }
+                updateHUD();
+                renderSidebar();
+            } else {
+                quizState.streak = 0;
+                playSoundEffect('wrong');
+            }
+
+            // Bacakan suara Hanzi yang benar setelah menjawab agar anak makin hafal
+            speakHanzi(q.target.hanzi);
+            renderQuiz();
+        }
+
+        function nextQuizQuestion() {
+            quizState.currentIndex += 1;
+            quizState.answered = false;
+            quizState.selectedIdx = -1;
+            renderQuiz();
+        }
+
+        function restartQuiz() {
+            initQuiz();
+            renderQuiz();
+        }
+
+        /**
+         * Mengacak Ulang Seluruh Kosakata Secara Manual (Selain Otomatis Saat Refresh)
+         */
+        function reshuffleAll() {
+            buildRandomizedData();
+            flippedSet.clear();
+            playSoundEffect('star');
+            if (currentMode === 'quiz') {
+                initQuiz();
+            }
+            renderRightPanel();
+            showToastNotification("🎲", "Urutan kosakata berhasil diacak ulang!", "bg-emerald-600");
+        }
+
+        /**
+         * Notifikasi Toast Ramah (Pengganti alert())
+         */
+        let toastTimer = null;
+        function showToastNotification(icon, message, bgClass = "bg-rose-600") {
+            const toast = document.getElementById('securityToast');
+            const iconEl = document.getElementById('securityToastIcon');
+            const msgEl = document.getElementById('securityToastMsg');
+
+            toast.className = `fixed top-20 left-1/2 -translate-x-1/2 z-[100] flex items-center gap-2 ${bgClass} text-white px-5 py-3 rounded-full shadow-2xl border-2 border-white font-bold text-xs sm:text-sm md:text-base transition-all duration-300 text-center max-w-[92vw]`;
+            iconEl.textContent = icon;
+            msgEl.textContent = message;
+
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => {
+                toast.classList.add('hidden');
+                toast.classList.remove('flex');
+            }, 2600);
+        }
+
+        /**
+         * Layar Pelindung Anti-Screenshot
+         */
+        function showPrivacyShield() {
+            const shield = document.getElementById('privacyShieldOverlay');
+            shield.classList.remove('hidden');
+            shield.classList.add('flex');
+            // Bersihkan clipboard jika memungkinkan
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText('').catch(() => {});
+            }
+        }
+
+        function hidePrivacyShield() {
+            const shield = document.getElementById('privacyShieldOverlay');
+            shield.classList.add('hidden');
+            shield.classList.remove('flex');
+        }
+
+        /**
+         * SISTEM PROTEKSI:
+         * - Mematikan klik kanan (contextmenu)
+         * - Mematikan select, copy, cut, drag
+         * - Mematikan tombol F12, Ctrl+Shift+I/J/C, Ctrl+U, Ctrl+S, Ctrl+P
+         * - Memblokir tombol PrintScreen / tangkapan layar
+         */
+        function initSecurityProtection() {
+            // 1. Blokir Klik Kanan
+            document.addEventListener('contextmenu', (e) => {
+                e.preventDefault();
+                showToastNotification("🛡️", "Klik kanan dinonaktifkan untuk melindungi materi belajar!");
+            });
+
+            // 2. Blokir Seleksi Teks (kecuali di dalam kotak pencarian)
+            document.addEventListener('selectstart', (e) => {
+                if (e.target && e.target.id === 'searchInput') return;
+                e.preventDefault();
+            });
+
+            // 3. Blokir Drag & Drop
+            document.addEventListener('dragstart', (e) => {
+                e.preventDefault();
+            });
+
+            // 4. Blokir Copy & Cut
+            document.addEventListener('copy', (e) => {
+                e.preventDefault();
+                showToastNotification("🛡️", "Fungsi salin (Copy) dinonaktifkan!");
+            });
+
+            document.addEventListener('cut', (e) => {
+                e.preventDefault();
+                showToastNotification("🛡️", "Fungsi potong (Cut) dinonaktifkan!");
+            });
+
+            // 5. Blokir F12, DevTools Shortcuts, View Source, Save, Print, dan Screenshot
+            document.addEventListener('keydown', (e) => {
+                const key = e.key ? e.key.toLowerCase() : '';
+                const isCtrlOrCmd = e.ctrlKey || e.metaKey;
+
+                // F12
+                if (e.key === 'F12' || e.keyCode === 123) {
+                    e.preventDefault();
+                    showToastNotification("🛡️", "Tombol F12 / Inspeksi elemen dinonaktifkan!");
+                    return false;
+                }
+
+                // Ctrl+Shift+I / J / C atau Cmd+Option+I / J / C
+                if (isCtrlOrCmd && e.shiftKey && ['i', 'j', 'c'].includes(key)) {
+                    e.preventDefault();
+                    showToastNotification("🛡️", "Inspeksi halaman dinonaktifkan!");
+                    return false;
+                }
+
+                // Ctrl+U (View Source), Ctrl+S (Save), Ctrl+P (Print)
+                if (isCtrlOrCmd && ['u', 's', 'p'].includes(key)) {
+                    e.preventDefault();
+                    showToastNotification("🛡️", "Fitur simpan, cetak, dan kode sumber dinonaktifkan!");
+                    return false;
+                }
+
+                // Ctrl+A / Ctrl+C di luar kotak pencarian
+                if (isCtrlOrCmd && ['a', 'c', 'x'].includes(key)) {
+                    if (document.activeElement && document.activeElement.id === 'searchInput') {
+                        return true;
+                    }
+                    e.preventDefault();
+                    showToastNotification("🛡️", "Fungsi pilih semua dan salin dinonaktifkan!");
+                    return false;
+                }
+
+                // PrintScreen atau Shortcut Screenshot macOS (Cmd+Shift+3 / 4 / 5)
+                if (e.key === 'PrintScreen' || e.keyCode === 44 || (e.metaKey && e.shiftKey && ['3', '4', '5'].includes(key))) {
+                    e.preventDefault();
+                    showPrivacyShield();
+                    return false;
+                }
+            });
+
+            // Deteksi tambahan saat tombol PrintScreen dilepas (keyup)
+            document.addEventListener('keyup', (e) => {
+                if (e.key === 'PrintScreen' || e.keyCode === 44) {
+                    showPrivacyShield();
+                }
+            });
+        }
+
+        /**
+         * Inisialisasi Aplikasi Saat Halaman Dimuat / Di-refresh
+         */
+        window.onload = function () {
+            initSecurityProtection();
+            buildRandomizedData(); // Otomatis mengacak kosakata setiap kali mulai ulang / refresh
+            updateHUD();
+            renderSidebar();
+            renderRightPanel();
+        };
+    </script>
+</body>
+</html>
